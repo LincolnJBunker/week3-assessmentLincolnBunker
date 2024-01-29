@@ -27,7 +27,7 @@ app.get("/hello", handlerFunctions.wassup);
 app.get("/skis", handlerFunctions.getTheSkis);
 app.post("/newSki", handlerFunctions.newSkis);
 app.delete("/deleteSki/:id", handlerFunctions.deleteSki);
-app.put("/updateSki/:id", handlerFunctions.changeVote)
+app.put("/changeVote/:id", handlerFunctions.changeVote)
 
 app.listen(8080, () => 
     console.log("Jerry's runnin' at http://localhost:8080")

@@ -18,9 +18,9 @@ const createSkicard = (skiObj) => {
     <p>${skiObj.name}</p>
     
     <section>
-    <button onclick="changeVote(${skiObj.id}, '-')">-</button>
-    <p>How many are rocking with em'?: ${skiObj.votes}</p>
-    <button onclick="changeVote(${skiObj.id}, '+')">+</button>
+    <button onclick="changeVote(${skiObj.id}, 'down')">-</button>
+    How many votes? ${skiObj.votes}
+    <button onclick="changeVote(${skiObj.id}, 'up')">+</button>
     </section>
     
     <br/>
@@ -84,17 +84,17 @@ const deleteSki = (id) => {
 
 const changeVote = (id, type) => {
     let bodyObj = {
-        typeOfVote: type
+        voteType: type
     }
+
+    console.log("calling change vote", bodyObj);
     
-    axios
-    .put(`/updateSki/${id}`, bodyObj)
+    axios.put(`/changeVote/${id}`, bodyObj)
     .then((res) => {
         skiDisplay.innerHTML = "";
         displayTheSkis(res.data.allSkis)
-        console.log(res.data.allSkis)
-    })
-}
+    });
+};
 
 skiForm.addEventListener("submit", newSkis);
 getTheSkis()

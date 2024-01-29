@@ -55,28 +55,29 @@ const handlerFunctions = {
 
     changeVote: (req, res) => {
         const skiId = req.params.id;
-        const skiVote = req.params.typeOfVote;
+        const voteType = req.body.voteType;
+
+        console.log("In changevote", skiId);
+        console.log("In changevote", voteType);
 
         const skiIdx = skis.findIndex((ski) => {
             return ski.id === +skiId
         });
 
-        if(skiVote === "+") {
+        if(voteType === "up") {
             skis[skiIdx].votes += 1
-            console.log("vote added")
+    
         } 
-        else if(skiVote === "-") {
+        else if(voteType === "down") {
             skis[skiIdx].votes -= 1
-            console.log("vote gone")
+        
         }
 
         res.send({
             message: "Vote changed!",
-            allSkis: skis
+            allSkis: skis,
         })
-
-
-    }
+    },
 };
 
 export default handlerFunctions
